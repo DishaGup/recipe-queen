@@ -5,6 +5,7 @@ const userSchema = Schema(
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
+    bookmarkedRecipes: [{ type: String }], // Store third-party recipe IDs
   },
   {
     versionKey: false,
@@ -12,6 +13,6 @@ const userSchema = Schema(
 );
 
 // Create the User model using the user schema
-const UserModel = model("users", userSchema);
+const UserModel = model( "User" , userSchema);
 
 module.exports = { UserModel };
