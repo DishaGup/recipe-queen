@@ -5,7 +5,7 @@ import Footer from './Components/FooterSec';
 import Navbar from './Components/Navbar';
 import Homepage from './Pages/Homepage';
 import AllRoutes from './Routes/AllRoutes';
-
+import './index.css'
 function App() {
  
   return (

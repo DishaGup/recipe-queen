@@ -2,8 +2,59 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaLeaf, FaStar } from "react-icons/fa";
 import { GiFlame } from "react-icons/gi";
-import { fetchAllRecipe } from "../Redux/action";
+import { fetchAllRecipe, recipeAddToBookmarked, recipeBookMarkedDataFetch } from "../Redux/action";
 const AllRecipe = () => {
+
+  const {loading,error,token,bookmarkedData,userId} =useSelector((store)=>store.authReducer)
+  console.log(loading,error,token,bookmarkedData,userId)
+
+
+  useEffect(()=>{
+    dispatch(recipeBookMarkedDataFetch(userId,token))
+    },[])
+
+
+const handleAddToBookmark =(recipeId)=>{
+
+  if (!token) {
+    // toast({
+    //   title: "Login to Your Account",
+    //   position: "top",
+    //   status: "info",
+    //   variant: "top-accent",
+    //   duration: 3000,
+    //   isClosable: true,
+    // });
+
+    // setTimeout(() => {
+    //   navigate("/login");
+    // }, 2000);
+    alert('No token')
+    return;
+  }
+
+
+  const isAlreadyBookmarked = bookmarkedData.some(
+    (item) => item === recipeId
+  );
+
+  if (!isAlreadyBookmarked) {
+        dispatch(recipeAddToBookmarked({recipeId,userId}, token));
+  } else {
+    // toast({
+    //   title: "Already in WatchList",
+    //   position: "top",
+    //   status: "info",
+    //   variant: "top-accent",
+    //   duration: 2000,
+    //   isClosable: true,
+    // });
+    alert("already in wishlist")
+  }
+
+}
+
+
  const dishess =[
     {
         "vegetarian": true,
@@ -306,7 +357,8 @@ const AllRecipe = () => {
       </p>
       <div className="allrecipes-grid">
  {
-    dishess.map((el,index)=>       <div className="allrecipe-card">
+    dishess.map((el,index)=>  
+         <div className="allrecipe-card">
     <div className="img-box">
       <img
         src={el.image}
@@ -316,18 +368,18 @@ const AllRecipe = () => {
         loading="lazy"
       />
       {el.aggregateLikes > 300 && el.veryPopular && el.vegan ? (
-        <div class="card-badge red">
-          <FaLeaf class="green" />
+        <div className="card-badge red">
+          <FaLeaf className="green" />
           <GiFlame left="28px" />
           <p>Hot</p>
         </div>
       ) : el.vegan ? (
-        <div class="card-badge green">
+        <div className="card-badge green">
           <FaLeaf />
           <p>Vegan</p>
         </div>
       ) : el.aggregateLikes > 300 && el.veryPopular ? (
-        <div class="card-badge red">
+        <div className="card-badge red">
           <GiFlame />
           <p>Hot</p>
         </div>
@@ -357,7 +409,12 @@ const AllRecipe = () => {
         <FaStar />
       </div>
     </div>
-  </div>)
+    <button onClick={()=>handleAddToBookmark(el.id)} > Bookmark </button>
+  </div>
+  
+  
+  )
+
  }
 </div>
       {/* <div className="allrecipes-grid">
@@ -374,18 +431,18 @@ const AllRecipe = () => {
                     loading="lazy"
                   />
                   {el.aggregateLikes > 300 && el.veryPopular && el.vegan ? (
-                    <div class="card-badge red">
-                      <FaLeaf class="green" />
+                    <div className="card-badge red">
+                      <FaLeaf className="green" />
                       <GiFlame left="28px" />
                       <p>Hot</p>
                     </div>
                   ) : el.vegan ? (
-                    <div class="card-badge green">
+                    <div className="card-badge green">
                       <FaLeaf />
                       <p>Vegan</p>
                     </div>
                   ) : el.aggregateLikes > 300 && el.veryPopular ? (
-                    <div class="card-badge red">
+                    <div className="card-badge red">
                       <GiFlame />
                       <p>Hot</p>
                     </div>

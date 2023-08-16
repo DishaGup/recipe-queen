@@ -11,6 +11,7 @@ const initial = {
   bookmarkedData: [],
   token: "",
   singleStock: [],
+  userId : ""
 };
 
 export const reducer = (state = initial, { type, payload }) => {
@@ -28,6 +29,7 @@ export const reducer = (state = initial, { type, payload }) => {
         ...state,
         loading: false,
         token: payload.token,
+        userId :payload.userId
       };
 
     case USER_REGISTER_REQUEST_SUCCESS:

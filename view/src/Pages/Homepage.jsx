@@ -4,6 +4,7 @@ import HeroSection from "../Components/HeroSection";
 import Dishes from "../Components/Dishes";
 import { useDispatch } from "react-redux";
 import { fetchAllRecipe } from "../Redux/action";
+import NewsLetter from "../Components/NewsLetter";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Homepage = () => {
           <HeroSection />
         </article>
         <Dishes />
+        <NewsLetter />
       </main>
 
   );

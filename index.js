@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const userRouter = require("./Routes/user.routes");
 const connection = require("./connection");
+const recipeRouter = require("./Routes/recipes.route");
 const app = express();
 
 require("dotenv").config();
@@ -13,8 +14,8 @@ app.use(express.json());
 
 // <---  Routes for USER  -->
 
-app.use("/users/api", userRouter)
-
+app.use("/api/users", userRouter)
+app.use("/api/recipe",recipeRouter)
 
 
 // <---  Backend SERVER  -->

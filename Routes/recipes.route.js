@@ -47,7 +47,7 @@ recipeRouter.post('/bookmark/:userId/:recipeId', async (req, res) => {
     const bookmarkedRecipeDetails = await Promise.all(
         bookmarkedRecipes.map(async (recipeId) => {
           try {
-            const response = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/information`);
+            const response = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.spoonacular_API_KEY}`);
             return response.data;
           } catch (error) {
             // Handle error fetching recipe data

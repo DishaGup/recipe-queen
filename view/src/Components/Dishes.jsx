@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FaLeaf, FaStar } from "react-icons/fa";
 import { GiFlame } from "react-icons/gi";
+import { Link } from "react-router-dom";
 const Dishes = () => {
- 
-
   const { allRecipes } = useSelector((store) => store.recipeReducer);
   //console.log(allRecipes)
   return (
@@ -73,8 +72,9 @@ const Dishes = () => {
             </a>
           ))}
       </div>
-
-      <button className="btn btn-primary has-after">See more recipes.</button>
+      <Link to="/all-recipe">
+        <button className="btn btn-primary has-after">See more recipes.</button>
+      </Link>
     </section>
   );
 };
