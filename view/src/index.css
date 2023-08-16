@@ -330,8 +330,8 @@
      * dishes 
      */
   
-    .dishes-grid { grid-template-columns: repeat(2, 1fr); }
-  
+    .dishes-grid ,.recipes-grid{ grid-template-columns: repeat(2, 1fr); }
+    
   
   
     /**

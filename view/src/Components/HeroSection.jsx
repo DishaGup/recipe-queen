@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const HeroSection = () => {
   return (
@@ -14,7 +15,7 @@ const HeroSection = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
           </p>
 
-          <a href="#" className="btn btn-secondary has-after">Order Now</a>
+          <Link to="/login" className="btn btn-secondary has-after">Login</Link>
         </div>
 
      <figure className="hero-banner"> 

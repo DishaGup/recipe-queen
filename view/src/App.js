@@ -1,11 +1,18 @@
 
+import { useLocation } from 'react-router-dom';
 import './App.css';
+import Footer from './Components/FooterSec';
+import Navbar from './Components/Navbar';
 import Homepage from './Pages/Homepage';
+import AllRoutes from './Routes/AllRoutes';
 
 function App() {
+ 
   return (
     <div as="body" className="App">
-     <Homepage />
+   <Navbar />
+   <AllRoutes />
+   <Footer />
     </div>
   );
 }

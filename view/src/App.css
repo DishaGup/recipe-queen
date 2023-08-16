@@ -257,7 +257,7 @@ body.active { overflow: hidden; }
   gap: 2px;
 }
 
-.rating-wrapper ion-icon {
+.rating-wrapper react-icon {
   color: var(--marigold);
   font-size: 2rem;
 }
@@ -414,7 +414,7 @@ body.active { overflow: hidden; }
   padding: 2px;
 }
 
-.nav-close-btn ion-icon { --ionicon-stroke-width: 35px; }
+.nav-close-btn react-icon { --ionicon-stroke-width: 35px; }
 
 .navbar .logo { margin-block-end: 30px; }
 
@@ -650,7 +650,7 @@ body.active { overflow: hidden; }
 
 .newsletter .input-field:focus { box-shadow: inset 0 0 0 2px var(--marigold); }
 
-.newsletter .btn ion-icon { --ionicon-stroke-width: 50px; }
+.newsletter .btn react-icon { --ionicon-stroke-width: 50px; }
 
 
 
@@ -684,18 +684,18 @@ body.active { overflow: hidden; }
   padding-block: 10px;
 }
 
-.footer-link ion-icon { font-size: 1.8rem; }
+.footer-link react-icon { font-size: 1.8rem; }
 
 .address { border-block-end: 1px solid var(--sonic-silver); }
 
 .footer-link:is(:hover, :focus-visible) { color: var(--marigold); }
 
-.address ion-icon { flex-shrink: 0; }
+.address react-icon { flex-shrink: 0; }
 
 .social-list {
   display: flex;
   gap: 20px;
-  padding-block-start: 40px;
+  padding-block-start: 50px;
 }
 
 .social-link {
@@ -1207,7 +1207,7 @@ body.active { overflow: hidden; }
   font-size: 14px;
 }
 
-.card-badge ion-icon { font-size: 13px; }
+.card-badge react-icon { font-size: 13px; }
 
 .card-badge.green {
   background: var(--pistachio);
@@ -1272,4 +1272,124 @@ body.active { overflow: hidden; }
 
 
 
+/***
+
+All recipe page 
+
+
+***/
+
+
+.allrecipe { padding: var(--py) var(--px); }
+
+.allrecipe .section-title { margin-bottom: 30px; }
+
+.allrecipe .section-text { margin-bottom: 60px; }
+
+.allrecipes-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 40px;
+  margin-bottom: 50px;
+}
+.allrecipe-card{
+  border: 2px solid black;
+}
+.allrecipe-card .img-box {
+  position: relative;
+  overflow: hidden;
+  
+}
+
+.allrecipe-img {
+  width:  100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--default-transition);
+  overflow: hidden;
+}
+
+.allrecipe-card:hover .allrecipe-img { transform: scale(1.05); }
+
+.card-badge {
+  position: absolute;
+  top:  15px;
+  left: 15px;
+  display:     flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  font-size: 14px;
+}
+
+.card-badge react-icon { font-size: 13px; }
+
+.card-badge.green {
+  background: var(--pistachio);
+  color: var(--space-cadet);
+}
+
+.card-badge.red {
+  background: var(--red-orange-crayola);
+  color: var(--space-cadet);
+}
+
+.allrecipe-card .wrapper {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  gap: 15px;
+  background: var(--cultured);
+  margin-bottom: 15px;
+}
+
+.allrecipe-card .allrecipe-name {
+  color: var(--space-cadet);
+  font-size: 18px;
+  font-weight: 600;
+  padding-left: 15px;
+}
+
+.allrecipe-card .allrecipe-price {
+  background: var(--saffron);
+  height: 60px;
+  width:  60px;
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  color: var(--space-cadet);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.allrecipe-card .small {
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.allrecipe-card .allrecipe-text {
+  font-size: 15px;
+  color: var(--rhythm);
+  line-height: 1.6;
+  letter-spacing: 0.4px;
+  margin-bottom: 15px;
+}
+
+.allrecipe-summary{
+  font-size: 15px;
+  color: var(--eerie-black);
+  line-height: 1.4;
+  letter-spacing: 0.4px;
+  margin-bottom: 15px;
+}
+
+.allrecipe-card .allrecipe-rating {
+  display:     flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--saffron);
+}
+
+.allrecipe .btn-primary { margin-inline: auto; }
 
