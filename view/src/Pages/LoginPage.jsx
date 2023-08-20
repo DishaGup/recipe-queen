@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { useToast,Alert,AlertIcon, Button, Input, InputGroup, InputRightElement, FormControl, FormLabel, Heading, Box, Center, VStack, Text, Container } from "@chakra-ui/react";
+
 
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { loginUserRequest } from "../Redux/action";
@@ -14,7 +16,7 @@ const initial = {
 const LoginPage = () => {
   const [showpass1, setShowpass1] = useState(false);
   const [formData, setFormData] = useState(initial);
-  
+  const toast = useToast();
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,105 +31,102 @@ const LoginPage = () => {
     });
   };
 
-  const {loading,error,token} =useSelector((store)=>store.authReducer)
-  //console.log(loading,error,token)
- 
-  const handleSubmit =(e) => {
+  const { loading, error, token, userId } = useSelector(
+    (store) => store.authReducer
+  );
+  // console.log(loading, error, token, userId);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-//console.log(formData)
-dispatch(loginUserRequest(formData))
-    // try {
-    //   await dispatch(loginUserRequest(formData));
-    //   if (res && res.data && res.data.message === "Login Successful") {
-    //     toast({
-    //       title: "Login Successful",
-    //       description: `Welcome ${res.data.message}`,
-    //       position: "top",
-    //       status: "success",
-    //       variant: "top-accent",
-    //       duration: 2000,
-    //       isClosable: true,
-    //     });
-    //     navigate("/");
-    //   } else {
-    //     toast({
-    //       title: "Wrong Credentials",
-    //       position: "top-right",
-    //       status: "error",
-    //       variant: "top-accent",
-    //       duration: 2000,
-    //       isClosable: true,
-    //     });
-    //   }
-    // } catch (err) {
-    //   toast({
-    //     title: "Server Error",
-    //     position: "top-right",
-    //     status: "error",
-    //     variant: "top-accent",
-    //     duration: 2000,
-    //     isClosable: true,
-    //   });
-    // }
+
+    dispatch(loginUserRequest(formData))
+      .then((res) => {
+        toast({
+          title: "Login Successful",
+          description: `Welcome ${res.data.message}`,
+          position: "top",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+        setTimeout(() => {
+          navigate("/all-recipe");
+        }, 2000);
+        
+      })
+      .catch((error) => {
+        const errorMessage =
+          error?.response?.data?.message || "An error occurred during login.";
+        toast({
+          title: "Login Failed",
+          description: errorMessage,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      });
+
     setFormData(initial);
   };
 
   return (
-    <div className="login-container">
-    <div className="login-box">
-      <h2 className="login-title">Login</h2>
-      <form className="login-form" onSubmit={handleSubmit}>
-        {/* Form controls here */}
-        <div className="form-control">
-          <label className="form-label">
-            <span>Email</span>
-          </label>
-          <input
-            className="form-input"
+    <Center minH="100vh" >
+    <VStack spacing={6} maxW="400px"  borderWidth={1}
+      borderRadius={5}
+      boxShadow="md"
+      bgColor="white"
+      w={{ base: "90vw", md: "45vw" }}
+      p={6}>
+
+
+      <Heading size="lg">Login</Heading>
+      {error && (
+          <Alert status="error">
+            <AlertIcon />
+            {error}
+          </Alert>
+        )}
+      <Box as="form" onSubmit={handleSubmit} w="100%">
+        <FormControl className="form-group">
+          <FormLabel className="form-label">Email</FormLabel>
+          <Input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter Your Email"
           />
-        </div>
-        {/* ... */}
-        <div className="form-control">
-          <label className="form-label">
-            <span>Password</span>
-          </label>
-          <div className="form-input">
-            <input
+        </FormControl>
+        <FormControl className="form-group">
+          <FormLabel className="form-label">Password</FormLabel>
+          <InputGroup>
+            <Input
               name="password"
               placeholder="Type Password"
               value={formData.password}
               onChange={handleChange}
               type={showpass1 ? "text" : "password"}
             />
-            <button onClick={() => setShowpass1((prev) => !prev)}>
-              {showpass1 ? <AiFillEye /> : <AiFillEyeInvisible />}
-            </button>
-          </div>
-        </div>
-        {/* ... */}
-        <div className="form-btn">
-          <button
-            type="submit"
-            className="btn-primary"
-          >
-            Login
-          </button>
-        </div>
-        <div className="link-text">
-          Don't have an account?{" "}
-          <Link to="/register">Register</Link>
-        </div>
-      </form>
-    </div>
-  </div>
-  
+            <InputRightElement>
+              <Button
+                variant="unstyled"
+                onClick={() => setShowpass1((prev) => !prev)}
+              >
+                {showpass1 ? <AiFillEye /> : <AiFillEyeInvisible />}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
+        <Button my='10px' type="submit" className="btn btn-primary has-after">
+          Login
+        </Button>
+      </Box>
+      <Text className="link-text">
+        Don't have an account? <Link to="/register">Register</Link>
+      </Text>
+    </VStack>
+  </Center>
   );
 };
 
-
-export default LoginPage
+export default LoginPage;

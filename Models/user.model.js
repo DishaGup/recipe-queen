@@ -16,3 +16,10 @@ const userSchema = Schema(
 const UserModel = model( "User" , userSchema);
 
 module.exports = { UserModel };
+
+/**8
+ * 
+ 
+ "userId": "64db12f5049ab30eb95e1ce7"
+ 
+ */

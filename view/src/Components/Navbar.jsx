@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 import { menuheadings } from "./FooterSec";
-
+import { useDispatch, useSelector } from "react-redux";
+import { USER_LOGOUT_SUCCESS } from "../Redux/actionType";
+import {Box} from '@chakra-ui/react'
 const Navbar = () => {
   const navbar = useRef(null);
   const navTogglers = useRef(null);
@@ -12,11 +14,12 @@ const Navbar = () => {
   const overlay = useRef(null);
   const header = useRef(null);
   const location = useLocation();
-
-  
+  const dispatch = useDispatch();
+  const { token } = useSelector((store) => store.authReducer);
+  // console.log(token)
   useEffect(() => {
-    if (location.pathname !== "/") {
-      header.current.classList.add("active");
+    if (location.pathname !== "/" || location.pathname == "/bookmarked-data") {
+      header.current.classList.add("border");
     }
   }, []);
 
@@ -35,6 +38,7 @@ const Navbar = () => {
   const headerActive = () => {
     if (window.scrollY > 200) {
       header.current.classList.add("active");
+      header.current.classList.remove("border");
     } else {
       header.current.classList.remove("active");
     }
@@ -49,7 +53,21 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="header" ref={header}>
+    <Box
+      as="header"
+      className="header"
+      ref={header}
+      pos={location.pathname === "/" ? "absolute" : "fixed"}
+   //   pos = "absolute"
+      top="0"
+      left="0"
+      w="100%"
+      zIndex="4"
+      bg={location.pathname === "/" ? "transparent" : "white"}
+      boxShadow={location.pathname === "/" ? "none" : "var(--shadow-2)"}
+      transition="background-color 0.3s ease"
+      mb={location.pathname === "/" ? 0 : "64px"}
+    >
       <div className="container">
         <Link to="/" className="logo">
           <img src="/logo.png" width="148" height="38" alt="recipequeen home" />
@@ -75,7 +93,7 @@ const Navbar = () => {
 
           <ul className="navbar-list">
             {menuheadings.map((el, index) => (
-              <li key={index} className="navbar-item">
+              <li className="navbar-item" key={index}>
                 <Link
                   to="#"
                   className="navbar-link"
@@ -86,20 +104,41 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
+            {token != "" && (
+              <Link
+                to="/bookmarked-data"
+                className="navbar-link"
+                onClick={closeNavbar}
+                ref={navbarLinks}
+              >
+                Bookmark Data
+              </Link>
+            )}
           </ul>
         </nav>
 
         <div className="header-action">
-          <Link to="/login">
-            <button className="cart-btn" aria-label="cart">
-              <BiLogIn
+          <button className="cart-btn" aria-label="cart">
+            {token == "" ? (
+              <Link to="/login">
+                <BiLogIn
+                  color={"#00000"}
+                  height="250px"
+                  width="250px"
+                  aria-hidden="true"
+                />{" "}
+              </Link>
+            ) : (
+              <BiLogOut
                 color={"#00000"}
                 height="250px"
                 width="250px"
                 aria-hidden="true"
+                onClick={() => dispatch({ type: USER_LOGOUT_SUCCESS })}
               />
-            </button>
-          </Link>
+            )}
+          </button>
+
           <Link to="/all-recipe" className="btn btn-primary has-after">
             All Recipes
           </Link>
@@ -121,7 +160,7 @@ const Navbar = () => {
 
         <div className="overlay" ref={overlay}></div>
       </div>
-    </header>
+</Box>
   );
 };
 

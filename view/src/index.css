@@ -54,9 +54,6 @@
     left: 15%;
   }
 
-  .allrecipe-card {
-    flex-direction: column;
-  }
 }
 
 
@@ -97,9 +94,7 @@
     margin-inline: auto;
   }
 
-  .allrecipe-card {
-    flex-direction: column;
-  }
+ 
 }
 
 
@@ -178,9 +173,7 @@
     margin-bottom: 70px;
   }
 
-  .allrecipe-card {
-    flex-direction: row;
-  }
+
 }
 
 
@@ -272,9 +265,6 @@
 
 
 
-  .allrecipe-card {
-    flex-direction: row;
-  }
 
   /**
      * FOOTER 
@@ -308,3 +298,7 @@
   }
 
 }
+
+
+
+

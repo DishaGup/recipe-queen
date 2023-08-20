@@ -8,7 +8,7 @@ import {
 const initial = {
   loading: false,
   error: "",
-  singleRecipe: [],
+  singleRecipe: {},
   allRecipes: [],
 };
 
@@ -26,7 +26,7 @@ export const reducer = (state = initial, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        allRecipes: payload,
+        allRecipes: payload, error:""
       };
 
     case RECIPE_GET_REQUEST_FAILURE:
@@ -34,7 +34,7 @@ export const reducer = (state = initial, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        error: true,
+        error: payload,
       };
 
     case SINGLE_RECIPE_GET_REQUEST_SUCCESS:
@@ -42,7 +42,7 @@ export const reducer = (state = initial, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        singleRecipe: payload,
+        singleRecipe: payload, error:""
       };
 
     default:

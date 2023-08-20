@@ -1,8 +1,11 @@
 import {
+  USER_ADD_RECIPE_TO_BOOKMARKED,
     USER_GET_REQUEST_FAILURE,
   USER_GET_REQUEST_PENDING,
   USER_LOGIN_REQUEST_SUCCESS,
+  USER_LOGOUT_SUCCESS,
   USER_REGISTER_REQUEST_SUCCESS,
+  USER_REMOVE_RECIPE_FROM_BOOKMARKED,
 } from "../actionType";
 
 const initial = {
@@ -10,7 +13,6 @@ const initial = {
   error: "",
   bookmarkedData: [],
   token: "",
-  singleStock: [],
   userId : ""
 };
 
@@ -29,7 +31,7 @@ export const reducer = (state = initial, { type, payload }) => {
         ...state,
         loading: false,
         token: payload.token,
-        userId :payload.userId
+        userId :payload.userId ,error:""
       };
 
     case USER_REGISTER_REQUEST_SUCCESS:
@@ -37,17 +39,26 @@ export const reducer = (state = initial, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        token: "",
+        token: "", error:""
       };
 
-    // case USER_LOGOUT_SUCCESS:
-    //   // Reset user details and token on successful user logout
-    //   return {
-    //     ...state,
-    //     loading: false,
+     case USER_ADD_RECIPE_TO_BOOKMARKED:
+      return {
+        ...state, bookmarkedData :payload ,error:""
+      } ;
 
-    //     token: "",
-    //   };
+     case USER_REMOVE_RECIPE_FROM_BOOKMARKED:
+        return {
+          ...state, bookmarkedData :payload ,error:""
+        } 
+    case USER_LOGOUT_SUCCESS:
+      // Reset user details and token on successful user logout
+      return {
+        ...state,
+        loading: false,
+         error:null,
+        token: "",
+      };
 
     case USER_GET_REQUEST_FAILURE:
       // Update error message on user request failure

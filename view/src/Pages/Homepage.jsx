@@ -9,13 +9,10 @@ import NewsLetter from "../Components/NewsLetter";
 const Homepage = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAllRecipe());
-  },[]);
 
   return (
   
-      <main>
+      <main style={{overflow:'hidden'}}>
         <article>
           <HeroSection />
         </article>
