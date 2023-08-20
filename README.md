@@ -227,25 +227,31 @@ Contributions are welcome! If you find a bug or have suggestions for improvement
 
 ## Snapshots 
 
+![homepagesearch](https://github.com/DishaGup/recipe-queen/assets/115460391/6a7e3a62-cb6b-40c3-b2ee-5db85860fb50)
 
+---
 
+![homepageresponsive](https://github.com/DishaGup/recipe-queen/assets/115460391/f34a9c16-f626-4b05-abac-ff530b95de76)
 
-![view\public\Readme\homepagesearch.png](view\public\Readme\homepagesearch.png)
+---
 
+![register](https://github.com/DishaGup/recipe-queen/assets/115460391/849d8bf7-40e0-4518-a7e8-db4d90dbcba2)
 
+---
 
-![registeration Image](view\public\Readme\register.png)
+![allrecipe](https://github.com/DishaGup/recipe-queen/assets/115460391/9293b257-185a-4712-b900-922d82f2dbdc)
 
-![allrecipe Image](view\public\Readme\allrecipe.png)
+---
 
+![bookmark](https://github.com/DishaGup/recipe-queen/assets/115460391/26ea8b4b-6493-4cbf-be48-2c2ab4bb3d06)
 
-![view\public\Readme\bookmark.png](view\public\Readme\bookmark.png)
+---
 
-![view\public\Readme\homepageresponsive.png](view\public\Readme\homepageresponsive.png)
+![singlerecipe1](https://github.com/DishaGup/recipe-queen/assets/115460391/76c07ffb-ecb3-4ae6-ae6d-585266b264a8)
 
+---
 
-![view\public\Readme\singlerecipe1.png](view\public\Readme\singlerecipe1.png)
+![singlerecipe2](https://github.com/DishaGup/recipe-queen/assets/115460391/261dfe55-6813-43b9-9455-3acfefeac1b4)
 
-![view\public\Readme\singlerecipe2.png](view\public\Readme\singlerecipe2.png)
 
 && more...
