@@ -53,12 +53,11 @@ export const loginUserRequest = (data) => (dispatch) => {
   return axios
     .post(`${url}/api/users/login`, data)
     .then((res) => {
-      console.log(res);
+   
       dispatch({ type: USER_LOGIN_REQUEST_SUCCESS, payload: res.data }); // Dispatch a user login request success action
       return res; // Return the response data
     })
     .catch((err) => {
-      console.log(err);
       dispatch({ type: USER_GET_REQUEST_FAILURE, payload: err }); // Dispatch a user request failure action
       return err; // Handle any errors
     });
@@ -72,7 +71,7 @@ export const registerUserRequest = (data) => (dispatch) => {
   return axios
     .post(`${url}/api/users/register`, data)
     .then((res) => dispatch({ type: USER_REGISTER_REQUEST_SUCCESS })) // Return the response data
-    .catch((err) => dispatch({ type: USER_GET_REQUEST_FAILURE })); // Handle any errors
+    .catch((err) => dispatch({ type: USER_GET_REQUEST_FAILURE, payload: err })); // Handle any errors
 };
 
 export const recipeAddToBookmarked = (data, token) => (dispatch) => {
@@ -86,7 +85,6 @@ export const recipeAddToBookmarked = (data, token) => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(res);
       dispatch(recipeBookMarkedDataFetch(userId, token));
     })
     .catch((err) => dispatch({ type: USER_GET_REQUEST_FAILURE, payload: err }));
@@ -104,11 +102,9 @@ export const recipeRemoveFromBookmarked = (data, token) => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(res);
       dispatch(recipeBookMarkedDataFetch(userId, token));
     })
     .catch((err) => {
-      console.log(err);
       dispatch({ type: USER_GET_REQUEST_FAILURE, payload: err });
     });
 };
@@ -124,14 +120,13 @@ export const recipeBookMarkedDataFetch = (userId, token) => (dispatch) => {
       },
     })
     .then((res) => {
-      console.log(res);
+    
       dispatch({
         type: USER_ADD_RECIPE_TO_BOOKMARKED,
         payload: res.data.bookmarkedRecipeDetails,
       });
     })
     .catch((err) => {
-      console.log(err);
       dispatch({ type: USER_GET_REQUEST_FAILURE, payload: err });
     });
 };
@@ -148,7 +143,21 @@ export const singleRecipeDetailsFetch = (id) => (dispatch) => {
       dispatch({ type: SINGLE_RECIPE_GET_REQUEST_SUCCESS, payload: res.data })
     )
     .catch((err) => {
-      console.log(err);
       dispatch({ type: USER_GET_REQUEST_FAILURE, payload: err });
     });
+};
+
+export const searchRecipeName = (text) => (dispatch) => {
+  dispatch({ type: RECIPE_GET_REQUEST_PENDING }); // Dispatch a user request pending action
+
+  // Make a GET request to search for a coin
+  return axios
+    .get(
+      `https://api.spoonacular.com/recipes/autocomplete?apiKey=${apiKey}&number=10&query=${text.toString()}`
+    )
+    .then((res) => {
+      // Dispatch a search single stocks action
+      return res.data; // Return the response data
+    })
+    .catch((err) => err); // Handle any errors
 };

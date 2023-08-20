@@ -1,6 +1,6 @@
 import {
   USER_ADD_RECIPE_TO_BOOKMARKED,
-    USER_GET_REQUEST_FAILURE,
+  USER_GET_REQUEST_FAILURE,
   USER_GET_REQUEST_PENDING,
   USER_LOGIN_REQUEST_SUCCESS,
   USER_LOGOUT_SUCCESS,
@@ -13,7 +13,7 @@ const initial = {
   error: "",
   bookmarkedData: [],
   token: "",
-  userId : ""
+  userId: "",
 };
 
 export const reducer = (state = initial, { type, payload }) => {
@@ -31,7 +31,8 @@ export const reducer = (state = initial, { type, payload }) => {
         ...state,
         loading: false,
         token: payload.token,
-        userId :payload.userId ,error:""
+        userId: payload.userId,
+        error: "",
       };
 
     case USER_REGISTER_REQUEST_SUCCESS:
@@ -39,24 +40,31 @@ export const reducer = (state = initial, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        token: "", error:""
+        token: "",
+        error: "",
       };
 
-     case USER_ADD_RECIPE_TO_BOOKMARKED:
+    case USER_ADD_RECIPE_TO_BOOKMARKED:
       return {
-        ...state, bookmarkedData :payload ,error:""
-      } ;
+        ...state,
+        bookmarkedData: payload,
+        error: "",
+        loading: false,
+      };
 
-     case USER_REMOVE_RECIPE_FROM_BOOKMARKED:
-        return {
-          ...state, bookmarkedData :payload ,error:""
-        } 
+    case USER_REMOVE_RECIPE_FROM_BOOKMARKED:
+      return {
+        ...state,
+        bookmarkedData: payload,
+        error: "",
+        loading: false,
+      };
     case USER_LOGOUT_SUCCESS:
       // Reset user details and token on successful user logout
       return {
         ...state,
         loading: false,
-         error:null,
+        error: null,
         token: "",
       };
 

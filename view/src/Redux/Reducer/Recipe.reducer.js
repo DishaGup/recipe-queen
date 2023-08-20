@@ -26,7 +26,8 @@ export const reducer = (state = initial, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        allRecipes: payload, error:""
+        allRecipes: payload,
+        error: "",
       };
 
     case RECIPE_GET_REQUEST_FAILURE:
@@ -35,6 +36,7 @@ export const reducer = (state = initial, { type, payload }) => {
         ...state,
         loading: false,
         error: payload,
+        loading: false,
       };
 
     case SINGLE_RECIPE_GET_REQUEST_SUCCESS:
@@ -42,7 +44,8 @@ export const reducer = (state = initial, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        singleRecipe: payload, error:""
+        singleRecipe: payload,
+        error: "",
       };
 
     default:

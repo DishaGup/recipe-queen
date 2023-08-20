@@ -3,9 +3,7 @@ require("dotenv").config();
 
 // enter MONGO_URL in .env file
 
-const connection = mongoose.connect( process.env.MongoDB_URL );
-
-
+const connection = mongoose.connect(process.env.MongoDB_URL);
 
 // exports --->
 

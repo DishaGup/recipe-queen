@@ -8,7 +8,6 @@ const { UserModel } = require("../Models/user.model");
 //Route for creating the new account  --->   /users/api/register  --->
 
 userRouter.post("/register", async (req, res) => {
-    
   try {
     const { name, email, password } = req.body;
 
@@ -16,7 +15,7 @@ userRouter.post("/register", async (req, res) => {
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
       return res
-        .status(200)
+        .status(402)
         .json({ message: "Email already exists, Please Login" });
     }
 
@@ -50,17 +49,16 @@ userRouter.post("/login", async (req, res) => {
 
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
-     
         if (result) {
           const token = jwt.sign(
-            { }, // passing userId and userName using jwt
+            {}, // passing userId and userName using jwt
             "recipe"
           );
 
           res.status(200).json({
             message: "Login Successful",
             token,
-            userId: user._id
+            userId: user._id,
           });
         } else {
           res.status(401).send({ message: "Invalid password" });
@@ -70,7 +68,7 @@ userRouter.post("/login", async (req, res) => {
       res.status(401).send({ message: "User not found" });
     }
   } catch (error) {
-    res.status(500).json({ "error": error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -81,7 +79,7 @@ userRouter.get("/", async (req, res) => {
     const users = await UserModel.find();
     res.status(200).json({ users });
   } catch (error) {
-    res.status(400).json({ "error": error.messsage });
+    res.status(400).json({ error: error.messsage });
   }
 });
 

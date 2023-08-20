@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+
 import { FaLeaf, FaStar } from "react-icons/fa";
 import { GiFlame } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { results } from "../db";
 import { Heading } from "@chakra-ui/react";
 const Dishes = () => {
- 
   return (
     <section className="dishes" id="menu">
-      <Heading my='8px' fontSize={'25px'}>Most Popular Dishes</Heading>
+      <Heading my="8px" fontSize={"25px"}>
+        Most Popular Dishes
+      </Heading>
 
       <p className="section-text">
         Consectetur numquam poro nemo veniam eligendi rem adipisci quo modi.
@@ -18,7 +19,7 @@ const Dishes = () => {
       <div className="dishess-grid">
         {results &&
           results.map((el, index) => (
-            <Link   to={`/single-recipe/${el.id}`} key={index}>
+            <Link to={`/single-recipe/${el.id}`} key={index}>
               <div className="dishes-card">
                 <div className="img-box">
                   <img

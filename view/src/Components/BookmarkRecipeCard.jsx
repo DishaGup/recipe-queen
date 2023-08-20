@@ -8,7 +8,7 @@ import {
   Flex,
   Stack,
   Tooltip,
-  IconButton
+  IconButton,
 } from "@chakra-ui/react";
 import { FaLeaf, FaStar } from "react-icons/fa";
 import { GiFlame } from "react-icons/gi";
@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { recipeRemoveFromBookmarked } from "../Redux/action";
 
 const BookmarkRecipeCard = ({ recipe }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const {
     title,
     image,
@@ -30,19 +30,17 @@ const BookmarkRecipeCard = ({ recipe }) => {
     readyInMinutes,
     sourceName,
     sourceUrl,
-    id
+    id,
   } = recipe;
-  const {userId ,token} = useSelector(
-    (store) => store.authReducer
-  );
+  const { userId, token } = useSelector((store) => store.authReducer);
   // console.log("userId :",userId)
   const handleDeleteBookmark = (id) => {
     let data = {
-      userId,recipeId:id
-    }
- dispatch(recipeRemoveFromBookmarked(data,token))
+      userId,
+      recipeId: id,
+    };
+    dispatch(recipeRemoveFromBookmarked(data, token));
   };
-
 
   return (
     <Box
@@ -59,7 +57,7 @@ const BookmarkRecipeCard = ({ recipe }) => {
             icon={<AiFillDelete />}
             variant="ghost"
             colorScheme="red"
-            onClick={()=>handleDeleteBookmark(id)}
+            onClick={() => handleDeleteBookmark(id)}
             aria-label="Remove Bookmark"
           />
         </Tooltip>
@@ -94,14 +92,9 @@ const BookmarkRecipeCard = ({ recipe }) => {
       </Text>
       <Flex mt={3} justify="space-between" align="center">
         <Box>
-          <Text fontSize="sm" fontWeight="semibold" className='link-text'>
+          <Text fontSize="sm" fontWeight="semibold" className="link-text">
             Source:{" "}
-            <Link
-             
-              to={`/single-recipe/${id}`}
-              fontSize="sm"
-              
-            >
+            <Link to={`/single-recipe/${id}`} fontSize="sm">
               View Recipe
             </Link>
           </Text>

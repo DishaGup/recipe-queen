@@ -31,7 +31,9 @@ const Footer = () => {
               />
             </a> */}
 
-            <h2 className="h2 section-title">The Best Restaurants in Your Home</h2>
+            <h2 className="h2 section-title">
+              The Best Restaurants in Your Home
+            </h2>
 
             <p className="section-text">
               Vitae congue mauris rhoncus aenean. Enim nulla aliquet porttitor
@@ -110,4 +112,4 @@ const Footer = () => {
   );
 };
 
-export default Footer
+export default Footer;

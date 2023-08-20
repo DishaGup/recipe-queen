@@ -15,11 +15,18 @@ import {
 } from "@chakra-ui/accordion";
 //import { Checkbox } from "@chakra-ui/checkbox";
 import {
-  Box, Divider, Flex, Heading, HStack, Stack, Text, VStack,Button
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  HStack,
+  Stack,
+  Text,
+  VStack,
+  Button,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
-
 
 const FiltersSidebar = () => {
   const [isCuisineAccordionOpen, setIsCuisineAccordionOpen] = useState(false);
@@ -64,6 +71,7 @@ const FiltersSidebar = () => {
     "Chinese",
     "European",
   ];
+
   const all_diet_type = [" Gluten Free", "Ketogenic", "Vegan"];
   const handleCuisineFilter = (e) => {
     let cuisinedata = [...cuisineType];
@@ -75,105 +83,102 @@ const FiltersSidebar = () => {
     }
     setcuisineType(cuisinedata);
   };
-  // console.log(cuisineType,dietType);
+  
 
   return (
-    <VStack p="10px" >
-   
+    <VStack p="10px">
       <Heading
         fontWeight={"medium"}
-        fontSize={{ base: "18px", sm: "20px", md: "25px", lg: "35px" }}>
+        fontSize={{ base: "18px", sm: "20px", md: "25px", lg: "35px" }}
+      >
         Filters
       </Heading>
 
-    <Divider borderColor={"black"} />
+      <Divider borderColor={"black"} />
 
-    <Box maxH="300px" overflowY="scroll" w="full" >
+      <Box maxH="300px" overflowY="scroll" w="full">
         <Accordion flex="1" allowToggle>
           <AccordionItem>
-           
-              <AccordionButton>
-                <Box as="span" flex='1' textAlign='left'>
-                <Heading fontSize='19px' fontWeight={'5'} alignItems={'center'} >    Cuisine  </Heading>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
+            <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
-
-                <Flex>
-
-                <AccordionPanel  scrollBehavior='smooth' scrollMarginRight={'10px'} maxH='300px'  >
-
-              {all_cuisine_type.map((el, index) => (
-                <div key={index} className="checkbox-item">
-                  <Checkboxx
-                    isChecked={cuisineType.includes(el)}
-                    value={el}
-                    name="cuisineType"
-                    onChange={handleCuisineFilter}
-
-                  >
-                    {el}
-                  </Checkboxx>
-                </div>
-              ))}
-                </AccordionPanel>
-
-                </Flex>
+                <Heading fontSize="19px" fontWeight={"5"} alignItems={"center"}>
+                  {" "}
+                  Cuisine{" "}
+                </Heading>
               </Box>
-
-
-
-           
+              <AccordionIcon />
+            </AccordionButton>
+            <Box as="span" flex="1" textAlign="left">
+              <Flex>
+                <AccordionPanel
+                  scrollBehavior="smooth"
+                  scrollMarginRight={"10px"}
+                  maxH="300px"
+                >
+                  {all_cuisine_type.map((el, index) => (
+                    <div key={index} className="checkbox-item">
+                      <Checkboxx
+                        isChecked={cuisineType.includes(el)}
+                        value={el}
+                        name="cuisineType"
+                        onChange={handleCuisineFilter}
+                      >
+                        {el}
+                      </Checkboxx>
+                    </div>
+                  ))}
+                </AccordionPanel>
+              </Flex>
+            </Box>
           </AccordionItem>
         </Accordion>
       </Box>
 
-
       <Divider borderColor={"black"} />
-      <Box maxH="300px" overflowY="scroll" w="full" >
-      <Accordion flex="1" allowToggle>
+      <Box maxH="300px" overflowY="scroll" w="full">
+        <Accordion flex="1" allowToggle>
           <AccordionItem>
-           
-              <AccordionButton>
-                <Box as="span" flex='1' textAlign='left'>
-                  <Heading fontSize='19px' fontWeight={'5'} alignItems={'center'} >  Diets </Heading>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
+            <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
+                <Heading fontSize="19px" fontWeight={"5"} alignItems={"center"}>
+                  {" "}
+                  Diets{" "}
+                </Heading>
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            <Box as="span" flex="1" textAlign="left">
+              <Flex>
+                <AccordionPanel
+                  scrollBehavior="smooth"
+                  scrollMarginRight={"10px"}
+                  maxH="300px"
+                >
+                  {all_diet_type.map((el, ind) => (
+                    <div key={ind} className="checkbox-item">
+                      <Checkboxx
+                        isChecked={dietType.includes(el)}
+                        name="dietType"
+                        onChange={handleDietFilter}
+                        value={el}
+                      >
+                        {el}
+                      </Checkboxx>
+                    </div>
+                  ))}
+                </AccordionPanel>
+              </Flex>
+            </Box>
+          </AccordionItem>
+        </Accordion>
+      </Box>
 
-                <Flex>
-
-                <AccordionPanel  scrollBehavior='smooth' scrollMarginRight={'10px'} maxH='300px'  >
-              {all_diet_type.map((el, ind) => (
-                <div key={ind} className="checkbox-item">
-                  <Checkboxx
-                    isChecked={dietType.includes(el)}
-                    name="dietType"
-                    onChange={handleDietFilter}
-                    value={el}
-                  >
-                    {el}
-                  </Checkboxx>
-                </div>
-              ))}
-            </AccordionPanel>
-
-</Flex>
-</Box>
-
-</AccordionItem>
-</Accordion>
-</Box>
-
-
-<Button>
-  <Link to='/bookmarked-data'>See Bookmarks </Link>
-</Button>
-
-
-      </VStack>
+      <Button fontSize={"13px"}>
+        <Link to="#" my="80px">
+          Add more filters{" "}
+        </Link>
+      </Button>
+    </VStack>
   );
 };
 

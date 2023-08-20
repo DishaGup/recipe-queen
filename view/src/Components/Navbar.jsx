@@ -6,7 +6,8 @@ import { Link, useLocation } from "react-router-dom";
 import { menuheadings } from "./FooterSec";
 import { useDispatch, useSelector } from "react-redux";
 import { USER_LOGOUT_SUCCESS } from "../Redux/actionType";
-import {Box} from '@chakra-ui/react'
+import { Box, Input, HStack, useDisclosure } from "@chakra-ui/react";
+import SearchBox from "./SearchBox";
 const Navbar = () => {
   const navbar = useRef(null);
   const navTogglers = useRef(null);
@@ -16,6 +17,7 @@ const Navbar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { token } = useSelector((store) => store.authReducer);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   // console.log(token)
   useEffect(() => {
     if (location.pathname !== "/" || location.pathname == "/bookmarked-data") {
@@ -58,7 +60,7 @@ const Navbar = () => {
       className="header"
       ref={header}
       pos={location.pathname === "/" ? "absolute" : "fixed"}
-   //   pos = "absolute"
+      //   pos = "absolute"
       top="0"
       left="0"
       w="100%"
@@ -116,7 +118,19 @@ const Navbar = () => {
             )}
           </ul>
         </nav>
+        <HStack>
+          <Input
+            type="search"
+            _placeholder={{ color: "black" }}
+            onClick={onOpen}
+            onChange={onOpen}
+            placeholder="Search Recipes..."
+          />
 
+          {isOpen && (
+            <SearchBox isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+          )}
+        </HStack>
         <div className="header-action">
           <button className="cart-btn" aria-label="cart">
             {token == "" ? (
@@ -160,7 +174,7 @@ const Navbar = () => {
 
         <div className="overlay" ref={overlay}></div>
       </div>
-</Box>
+    </Box>
   );
 };
 

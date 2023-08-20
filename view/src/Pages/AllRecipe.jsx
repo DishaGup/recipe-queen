@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import { results as allRecipes } from "../db";
-import { FaLeaf, FaStar } from "react-icons/fa";
+
 import {
   Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Button,
   GridItem,
   Divider,
   Flex,
   Grid,
   Heading,
   HStack,
-  Image,
   Select,
   Spinner,
   Text,
   VStack,
-  Skeleton,
-  SkeletonCircle,
-  SkeletonText,
-  CloseButton,
   Tooltip,
   useToast,
   useDisclosure,
@@ -34,12 +24,7 @@ import {
   SliderThumb,
 } from "@chakra-ui/react";
 
-import { GiFlame } from "react-icons/gi";
-import {
-  fetchAllRecipe,
-  recipeAddToBookmarked,
-  recipeBookMarkedDataFetch,
-} from "../Redux/action";
+import { fetchAllRecipe, recipeAddToBookmarked } from "../Redux/action";
 import Pagination from "../Components/Pagination";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import FiltersSidebar from "../Components/FiltersSidebar";
@@ -54,12 +39,11 @@ const AllRecipe = () => {
   const [sortchoice, setsortChoice] = useState(
     searchParams.get("sortchoice") || ""
   );
-  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const { loading, error, token, bookmarkedData, userId } = useSelector(
+
+  const { token, bookmarkedData, userId } = useSelector(
     (store) => store.authReducer
   );
 
@@ -118,12 +102,16 @@ const AllRecipe = () => {
     }
   };
 
-  const { allRecipes , loading: recipeLoading, error: recipeError } = useSelector((store) => store.recipeReducer);
+  const {
+    allRecipes,
+    loading: recipeLoading,
+    error: recipeError,
+  } = useSelector((store) => store.recipeReducer);
 
   const dispatch = useDispatch();
   useEffect(() => {
-     // Dispatch fetchAllRecipe action when the location search changes
-  
+    // Dispatch fetchAllRecipe action when the location search changes
+
     dispatch(fetchAllRecipe(searchParams.get("pageno"), queryParams));
   }, [location.search]);
 
@@ -209,31 +197,33 @@ const AllRecipe = () => {
               <Divider borderColor={"black"} />
               {/* Display loading spinner while fetching data */}
               {recipeLoading ? (
-              <Spinner size="xl" />
-            ) : (
-              <Grid
-                gridTemplateColumns={{
-                  base: "1fr",
-                  md: "repeat(2,1fr)",
-                  lg: "repeat(3,1fr)",
-                }}
-                gap="5"
-              >
-                {/* Display recipe cards or error message */}
-                {allRecipes && allRecipes.length > 0 ? (
-                  allRecipes.map((el, index) => (
-                    <RecipeCard
-                      key={el.id}
-                      el={el}
-                      handleAddToBookmark={handleAddToBookmark}
-                    />
-                  ))
-                ) : (
-                  // Display error message if there's an error
-                  <Text color="red.500">{recipeError || "No recipes found."}</Text>
-                )}
-              </Grid>
-            )}
+                <Spinner size="xl" />
+              ) : (
+                <Grid
+                  gridTemplateColumns={{
+                    base: "1fr",
+                    md: "repeat(2,1fr)",
+                    lg: "repeat(3,1fr)",
+                  }}
+                  gap="5"
+                >
+                  {/* Display recipe cards or error message */}
+                  {allRecipes && allRecipes.length > 0 ? (
+                    allRecipes.map((el, index) => (
+                      <RecipeCard
+                        key={el.id}
+                        el={el}
+                        handleAddToBookmark={handleAddToBookmark}
+                      />
+                    ))
+                  ) : (
+                    // Display error message if there's an error
+                    <Text color="red.500">
+                      {recipeError || "No recipes found."}
+                    </Text>
+                  )}
+                </Grid>
+              )}
             </VStack>
           </GridItem>
         </Grid>

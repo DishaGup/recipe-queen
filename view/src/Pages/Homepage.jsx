@@ -9,17 +9,14 @@ import NewsLetter from "../Components/NewsLetter";
 const Homepage = () => {
   const dispatch = useDispatch();
 
-
   return (
-  
-      <main style={{overflow:'hidden'}}>
-        <article>
-          <HeroSection />
-        </article>
-        <Dishes />
-        <NewsLetter />
-      </main>
-
+    <main style={{ overflow: "hidden" }}>
+      <article>
+        <HeroSection />
+      </article>
+      <Dishes />
+      <NewsLetter />
+    </main>
   );
 };
 
