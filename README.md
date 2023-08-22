@@ -227,31 +227,31 @@ Contributions are welcome! If you find a bug or have suggestions for improvement
 
 ## Snapshots 
 
-![homepagesearch](https://github.com/DishaGup/recipe-queen/assets/115460391/6a7e3a62-cb6b-40c3-b2ee-5db85860fb50)
+![homepagesearch](https://github.com/DishaGup/recipe-queen/assets/115460391/3280a71e-83e8-4e35-846b-56fe7025ce41)
 
 ---
 
-![homepageresponsive](https://github.com/DishaGup/recipe-queen/assets/115460391/f34a9c16-f626-4b05-abac-ff530b95de76)
+![homepageresponsive](https://github.com/DishaGup/recipe-queen/assets/115460391/bcb1ac64-f739-4c99-a67c-7e1803fde419)
 
 ---
 
-![register](https://github.com/DishaGup/recipe-queen/assets/115460391/849d8bf7-40e0-4518-a7e8-db4d90dbcba2)
+![register](https://github.com/DishaGup/recipe-queen/assets/115460391/4df6d8d1-8c2c-4f1a-82a1-6c92fc950ef5)
 
 ---
 
-![allrecipe](https://github.com/DishaGup/recipe-queen/assets/115460391/9293b257-185a-4712-b900-922d82f2dbdc)
+![allrecipe](https://github.com/DishaGup/recipe-queen/assets/115460391/618e7991-1cf4-4ca9-b29e-150842477950)
 
 ---
 
-![bookmark](https://github.com/DishaGup/recipe-queen/assets/115460391/26ea8b4b-6493-4cbf-be48-2c2ab4bb3d06)
+![bookmark](https://github.com/DishaGup/recipe-queen/assets/115460391/19e381ee-4282-4274-933f-6d67f10e05c8)
 
 ---
 
-![singlerecipe1](https://github.com/DishaGup/recipe-queen/assets/115460391/76c07ffb-ecb3-4ae6-ae6d-585266b264a8)
+![singlerecipe1](https://github.com/DishaGup/recipe-queen/assets/115460391/d176776c-b8cf-4065-ba67-8d316244f037)
 
 ---
 
-![singlerecipe2](https://github.com/DishaGup/recipe-queen/assets/115460391/261dfe55-6813-43b9-9455-3acfefeac1b4)
+![singlerecipe2](https://github.com/DishaGup/recipe-queen/assets/115460391/eb6dfaf7-4771-4488-bf65-c28f3cc60ac2)
 
 
 && more...
